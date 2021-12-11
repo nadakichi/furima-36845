@@ -25,6 +25,7 @@ has_many :comments
 |item   |references|null:false,foreign_key:true|
 
 ### Association
+belongs_to :user
 has_one :item
 
 ## Itemsテーブル
@@ -43,7 +44,7 @@ has_one :item
 
 ### Association
 belongs_to :user  
-belongs_to :buyer
+has_one :buyer
 has_many :comments  
 
 
