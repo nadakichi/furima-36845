@@ -26,7 +26,7 @@ has_many :comments
 
 ### Association
 belongs_to :user
-has_one :item
+belongs_to :item
 
 ## Itemsテーブル
 |Column|Type|Options|
@@ -58,6 +58,7 @@ has_many :comments
 |building       |string|          |
 |telephone      |string|null:false|
 |prefecture_id  |integer|null:false|
+|user   |references|null:false,foreign_key:true|
 
 
 ### Association
