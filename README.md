@@ -16,18 +16,16 @@
 has_many :buyers  
 has_many :items  
 has_many :comments  
-has_one :address  
 
 ## Buyersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|buyer|string|null:false|
+|user   |references|null:false,foreign_key:true|
 |item   |references|null:false,foreign_key:true|
 
 ### Association
-has_many :comments  
-
+has_one :item
 
 ## Itemsテーブル
 |Column|Type|Options|
@@ -35,7 +33,7 @@ has_many :comments
 |name            |string|null:false|
 |text            |text  |null:false|
 |price           |integer|null:false|
-|category_id     |references|null:false,foreign_key:true|
+|category_id     |integer|null:false|
 |condition_id    |integer|null:false|
 |delivery_charge_id |integer|null:false|
 |delivery_day_id |integer|null:false|
@@ -45,7 +43,7 @@ has_many :comments
 
 ### Association
 belongs_to :user  
-belongs_to :item_image  
+belongs_to :buyer
 has_many :comments  
 
 
@@ -62,7 +60,7 @@ has_many :comments
 
 
 ### Association
-belongs_to :user
+belongs_to :buyer
 
 ## commentsテーブル
 
