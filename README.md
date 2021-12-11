@@ -58,7 +58,7 @@ has_many :comments
 |building       |string|          |
 |telephone      |string|null:false|
 |prefecture_id  |integer|null:false|
-|user   |references|null:false,foreign_key:true|
+|buyer   |references|null:false,foreign_key:true|
 
 
 ### Association
