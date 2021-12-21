@@ -37,8 +37,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include ("Condition can't be blank")
       end
+      it '商品状態カラムはId1では登録できない' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Condition can't be blank")
+      end
       it '配送料の負担情報必須' do
         @item.delivery_charge_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Delivery charge can't be blank")
+      end
+      it '配送料の負担情報のカラムはId1では登録できない' do
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include ("Delivery charge can't be blank")
       end
@@ -47,8 +57,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include ("Prefecture can't be blank")
       end
+      it '発送元情報のカラムはId1では登録できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Prefecture can't be blank")
+      end
       it '発送までの日数必須' do
         @item.delivery_day_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Delivery day can't be blank")
+      end
+      it '発送までの日数のカラムはId1では登録できない' do
+        @item.delivery_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include ("Delivery day can't be blank")
       end
