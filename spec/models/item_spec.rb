@@ -87,6 +87,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include ("Price can't be blank")
       end
+      it '金額は半角数値以外では登録できないこと' do
+        @item.price ='１００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Price can't be blank")
+      end
     end
   end
 end
