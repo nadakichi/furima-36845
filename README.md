@@ -13,11 +13,11 @@
 
 
 ### Association
-has_many :buyers  
+has_many :orders  
 has_many :items  
 has_many :comments  
 
-## Buyersテーブル
+## Ordersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -45,7 +45,7 @@ belongs_to :address
 
 ### Association
 belongs_to :user  
-has_one :buyer
+has_one :order
 has_many :comments  
 
 
@@ -59,7 +59,7 @@ has_many :comments
 |building       |string|          |
 |telephone      |string|null:false|
 |prefecture_id  |integer|null:false|
-|buyer   |references|null:false,foreign_key:true|
+|order   |references|null:false,foreign_key:true|
 
 
 ### Association
