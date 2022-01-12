@@ -7,12 +7,11 @@ class OrderAddress
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :address
-    validates :telephone, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
+    validates :telephone, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
     validates :item_id
     validates :user_id
     validates :token
   end
-  validate :building
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)

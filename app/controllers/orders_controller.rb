@@ -1,12 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
+  before_action :purchased_item, only: [:index]
 
   def index
-    if current_user.id != @item.user_id && @item.order.nil?
-    else
-      redirect_to root_path
-    end
     @order_address = OrderAddress.new
   end
 
@@ -40,5 +38,17 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_index
+    if current_user.id == @item.user.id
+      redirect_to root_path
+    end
+  end
+
+  def purchased_item
+    if @item.order != nil
+      redirect_to root_path
+    end
   end
 end
