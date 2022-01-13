@@ -4,6 +4,8 @@ RSpec.describe OrderAddress, type: :model do
   describe '配送先情報の保存' do
     before do
       @order_address = FactoryBot.build(:order_address)
+      @user_id = FactoryBot.build(:user)
+      @item_id = FactoryBot.build(:item)
     end
 
     context '内容に問題ない場合' do
@@ -50,12 +52,12 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号が9桁以下だと登録できないこと' do
         @order_address.telephone = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone can't be blank")
+        expect(@order_address.errors.full_messages).to include("Telephone is invalid")
       end
       it '電話番号が12桁以上だと登録できないこと' do
         @order_address.telephone = '123456789012'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone can't be blank")
+        expect(@order_address.errors.full_messages).to include("Telephone is invalid")
       end
       it '電話番号に半角数字以外が含まれている場合は購入できない。' do
         @order_address.telephone = '090-1234-5678'
@@ -66,6 +68,16 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空では購入できない' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では購入できない' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
