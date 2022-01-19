@@ -53,12 +53,12 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号が9桁以下だと登録できないこと' do
         @order_address.telephone = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone is invalid')
       end
       it '電話番号が12桁以上だと登録できないこと' do
         @order_address.telephone = '123456789012'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone is invalid')
       end
       it '電話番号に半角数字以外が含まれている場合は購入できない。' do
         @order_address.telephone = '090-1234-5678'
